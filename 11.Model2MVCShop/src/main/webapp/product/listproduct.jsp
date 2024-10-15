@@ -21,6 +21,7 @@
    <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
    
    
+   
    <!-- jQuery UI toolTip 사용 CSS-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- jQuery UI toolTip 사용 JS-->
@@ -37,8 +38,9 @@
 	<script type="text/javascript">
 	
 	function fncGetProductList(currentPage) {
+		var menu = $("input[name='menu']").val();
 		$("#currentPage").val(currentPage)
-		$("form").attr("method" , "GET").attr("action" , "/product/listProduct").submit();
+		$("form").attr("method" , "GET").attr("action" , "/product/listProduct?menu="+menu).submit();
 	}
 	
 	
@@ -56,10 +58,10 @@
 			 var prodNo = $(this).closest("tr").data("prodno");
 			 var menu = "${menu}"; 
 			 <c:if test="${menu == 'manage'}">
-				self.location = "/product/updateProductView?prodNo=" + prodNo + "&menu=${menu}";
+				self.location = "/product/updateProductView?prodNo=" + prodNo + "&menu="+menu;
 			 </c:if>
 			<c:if test="${menu == 'search'}">
-			self.location = "/product/getProduct?prodNo=" + prodNo + "&menu=${menu}";
+			self.location = "/product/getProduct?prodNo=" + prodNo + "&menu="+menu;
 			</c:if>
 		});
 		 $( "td:nth-child(2)" ).css("color" , "red");
@@ -101,6 +103,7 @@
 	
 		<div class="page-header text-info">
 			<input type="hidden" name="menu" value="${menu}">
+			<p>현재 menu 값: ${menu}</p>
 			<c:if test="${menu=='manage'}">
 						<h3>상 품 관 리</h3>
 			</c:if>
@@ -119,7 +122,7 @@
 		    
 		    <div class="col-md-6 text-right">
 			    <form class="form-inline" name="detailForm">
-			    
+			    <input type="hidden" name="menu" value="${menu}">
 				  <div class="form-group">
 				    <select class="form-control" name="searchCondition" >
 						<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" :'' }>상품번호</option>
