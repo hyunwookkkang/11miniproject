@@ -38,11 +38,12 @@
 	<script type="text/javascript">
 	/////////////////////////////////////////////////////이 아래부터 시작
 	$(function() {
-		$( "button" ).on("click" , function() {
-			self.location = "/product/addPurchaseView?prod_no=${product.prodNo}"
+		$( "button:contains('구매')" ).on("click" , function() {
+			//self.location = "/product/addPurchaseView?prodNo=${vo.prodNo}"
+			history.go(-1);
 		});
 		
-		 $( "button" ).on("click" , function() {
+		 $( "button:contains('취소')" ).on("click" , function() {
 			history.go(-1);
 		});
 		
@@ -59,7 +60,7 @@
 	
 	<div class="container">
 	
-	+<div class="page-header">
+	<div class="page-header">
 	       <h3 class=" text-info">상품상세조회</h3>
 	    </div>
 	
@@ -100,10 +101,8 @@
 		
 		<div class="row">
 	  		<div class="col-md-12 text-center ">
-	  			<button type="button" class="btn btn-primary">구 매</button>
-	  		</div>
-	  		<div class="col-md-12 text-center ">
-	  			<button type="button" class="btn btn-primary">취 소</button>
+	  			<button type="button" class="btn btn-primary">구매</button>
+	  			<button type="button" class="btn btn-primary">취소</button>
 	  		</div>
 		</div>
 		
