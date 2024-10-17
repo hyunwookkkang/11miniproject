@@ -36,6 +36,7 @@
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
+
 	
 	function fncGetProductList(currentPage) {
 		var menu = $("input[name='menu']").val();
@@ -47,10 +48,25 @@
 	
 	//검색
 	$(function() {
-		$(".search-btn").on("click", function() {
-			fncGetProductList(1);
-		});
-	});
+    $(".search-btn").on("click", function() {
+        var searchCondition = $("select[name='searchCondition']").val(); // 현재 선택된 검색 조건
+        var searchKeyword = $("#searchKeyword").val(); // 검색어
+
+
+        var isNumeric = /^\d+$/.test(searchKeyword);  // 정규표현식으로 숫자인지 검사
+        //test메서드는 정규 표현식이 주어진 문자열과 일치하는지 검사하고 ture, false를 반환
+        //^:문자열시작, /d: 숫자(0~9) +:하나 이상의 숫자, $:문자열의 끝 따라서 문자열이 오직 숫자로만 
+        //이루어져 있여야 하며, 최소한 하나의 숫자가 포함되어야 한다.
+
+        if ((searchCondition == 0 || searchCondition == 2) && !isNumeric) {
+            alert("상품 번호와 상품 가격은 숫자만 입력 가능합니다.");
+            return;  
+        }
+
+        // 유효성 검사 통과 시 검색 실행
+        fncGetProductList(1);
+    });
+});
 	
 	 $(function() {
 		
@@ -126,8 +142,8 @@
 				  <div class="form-group">
 				    <select class="form-control" name="searchCondition" >
 						<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" :'' }>상품번호</option>
-        	<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" :''}>상품명</option>
-        	<option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" :''}>상품가격</option>
+        				<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" :''}>상품명</option>
+        				<option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" :''}>상품가격</option>
 					</select>
 				  </div>
 				  
@@ -136,7 +152,7 @@
 				    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"
 				    			 value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
 				  </div>
-				  <button type="button" class="btn btn-default">검색</button>
+				  <button type="button" class="btn btn-default search-btn">검색</button>
 				  <input type="hidden" id="currentPage" name="currentPage" value=""/>
 				  
 				</form>

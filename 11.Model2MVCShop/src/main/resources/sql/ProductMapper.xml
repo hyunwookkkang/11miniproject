@@ -40,7 +40,8 @@
 			PROD_DETAIL			= #{prodDetail},
 			MANUFACTURE_DAY 	= #{manuDate} ,
 			PRICE				= #{price},
-			IMAGE_FILE			= #{fileName}
+			IMAGE_FILE			= #{fileName},
+			REG_DATE				=#{regDate}
 	   	</set>
 	   	WHERE prod_no = #{prodNo}
 	 </update>

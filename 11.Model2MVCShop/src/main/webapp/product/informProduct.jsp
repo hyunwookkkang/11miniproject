@@ -48,12 +48,6 @@
 	    </div>
 	   
 	   <form class="form-horizontal">
-	   
-	    <div class="row">
-	  		<div class="col-xs-4 col-md-2"><strong>상 품 번 호</strong></div>
-			<div class="col-xs-8 col-md-4">${vo.prodNo}</div>
-		</div>
-		
 		<hr/>
 		
 		<div class="row">
@@ -74,13 +68,13 @@
 	  		<div class="col-xs-4 col-md-2 "><strong>제 조 일 자</strong></div>
 			<div class="col-xs-8 col-md-4">${vo.manuDate}</div>
 		</div>
-		
+
 		<hr/>
-		
 		<div class="row">
-	  		<div class="col-xs-4 col-md-2 "><strong>등 록 일 자</strong></div>
-			<div class="col-xs-8 col-md-4">${vo.regDate}</div>
+	  		<div class="col-xs-4 col-md-2 "><strong>이미지</strong></div>
+			<div class="col-xs-8 col-md-4">${vo.fileName}</div>
 		</div>
+		
 		
 		<hr/>
 		
